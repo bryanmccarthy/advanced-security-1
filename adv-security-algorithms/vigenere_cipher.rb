@@ -64,6 +64,14 @@ module Vigenere
 end
 
 def test
+  # Encrypt
+  text = "this will be ENCRYPTED"
+  keyword = "XPQKLSD"
+  key = Vigenere.generate_key(text, keyword)
+  puts Vigenere.vigenere_encrypt(text, key)
+
+  puts ""
+
   # Decrypt
   encrypted_text = 'XQKP IZ IMWEB LK AUVZCXKW PHL VPE RIKD ASOZZSBZI TOIE ESTD XEJWXM
 CPS-3. PHPA TA DPW NEZCWB YN S OIE-GPIB KGIPLBTBSWF, WNK UJ WGV KGEPV
