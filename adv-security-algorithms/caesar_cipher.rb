@@ -39,7 +39,7 @@ def test
   # Encrypt
   text = "this will be ENCRYPTED"
   key = 28
-  puts Caesar.caesar_encrypt(text, key)
+  puts "Encrypted: #{Caesar.caesar_encrypt(text, key)}"
   puts
 
   # Decrypt
@@ -57,7 +57,7 @@ WKDW WKH SHULRG LV UHPRYHG EHFDXVH LW LV QRW D OHWWHU. BRX
 ZLOO DOVR QRWLFH WKH VHFRQG "P" LV QRW LQFOXGHG EHFDXVH
 WKHUH ZDV DQ P DOUHDGB DQG BRX FDQ\'W KDYH GXSOLFDWHV.'
   key = 3
-  puts Caesar.caesar_decrypt(encrypted_text, key)
+  puts "Decrypted: #{Caesar.caesar_decrypt(encrypted_text, key)}"
   puts
 
   # Decrypt
@@ -74,7 +74,7 @@ PFL NZCC JVV KYRK KYV GVIZFU ZJ IVDFMVU SVTRLJV ZK ZJ EFK R CVKKVI.
 PFL NZCC RCJF EFKZTV KYV JVTFEU "D" ZJ EFK ZETCLUVU SVTRLJV KYVIV
 NRJ RE D RCIVRUP REU PFL TRE\'K YRMV ULGCZTRKVJ.'
   key = 17
-  puts Caesar.caesar_decrypt(encrypted_text, key)
+  puts "Decrypted: #{Caesar.caesar_decrypt(encrypted_text, key)}"
 
 end
 

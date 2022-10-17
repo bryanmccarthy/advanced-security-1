@@ -2,7 +2,7 @@ module Hill
   LOWER_CASE = ("a".."z").to_a
   UPPER_CASE = ("A".."Z").to_a
 
-  def Hill.generate_matrix(string)
+  def Hill.generate_key_matrix(string)
     stringIdx = 0
     i = 0
     matrix = [[0,0], [0,0]]
@@ -20,29 +20,30 @@ module Hill
     return matrix
   end
 
-  def Hill.hill_encrypt(text_matrix, key_matrix)
-    encrypted_matrix = [[0,0], [0,0]]
-    encrypted_text = ""
+  def Hill.create_text_vectors(text)
+    text_vectors = {}
+    stringIdx = 0
     i = 0
 
-    2.times do 
-      j = 0
-      2.times do
-        k = 0
-        2.times do
-          encrypted_matrix[i][j] += key_matrix[i][k] * text_matrix[k][j]
-          k += 1
-        end
-        j += 1
-      end
+    (text.length / 2).times do 
+      text_vectors[i] = [UPPER_CASE.index(text[stringIdx]) % 26, UPPER_CASE.index(text[stringIdx + 1]) % 26]
+      stringIdx += 2
       i += 1
     end
 
-    encrypted_matrix.each_with_index do |row, i|
-      row.each_with_index do |col, j|
-        encrypted_matrix[i][j] %= 26
-        encrypted_text += UPPER_CASE[encrypted_matrix[i][j]]
+    return text_vectors
+  end
+
+  def Hill.hill_encrypt(text_vectors, key_matrix)
+    encrypted_text = ""
+    vector = 0
+
+    text_vectors.length.times do
+      key_matrix.each do |row|
+        sum = ((row[0] * text_vectors[vector][0]) + (row[1] * text_vectors[vector][1])) % 26
+        encrypted_text += UPPER_CASE[sum]
       end
+      vector += 1
     end
 
     return encrypted_text
@@ -50,17 +51,12 @@ module Hill
 end
 
 def test
-  text = "CAKE"
-  key = "BAKE"
+  text = "CAKEQ"
+  keyword = "BAKE"
+  text_vectors = Hill.create_text_vectors(text)
+  key_matrix = Hill.generate_key_matrix(keyword)
 
-  text_matrix = Hill.generate_matrix(text)
-  print text_matrix
-  key_matrix = Hill.generate_matrix(key)
-  puts
-  print key_matrix
-  puts
-
-  print Hill.hill_encrypt(text_matrix, key_matrix)
+  print "Encrypted: #{Hill.hill_encrypt(text_vectors, key_matrix)}"
 end
 
 test

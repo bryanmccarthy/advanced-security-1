@@ -68,7 +68,7 @@ def test
   text = "this will be ENCRYPTED"
   keyword = "XPQKLSD"
   key = Vigenere.generate_key(text, keyword)
-  puts Vigenere.vigenere_encrypt(text, key)
+  puts "Encrypted: #{Vigenere.vigenere_encrypt(text, key)}"
   puts
 
   # Decrypt
@@ -85,7 +85,7 @@ YRFXEIXIDUSPA. HM NQVJ\'T RVZE RWO HOUO EPO DSNIVCD ARI-2 NWRPIYBC
 EGQLK ZPUKQF OEJCCM. LCL ET\'Z 2012, IYL CPS-512 ES ZBTTV TGKKPVR OYWV.'
   keyword = 'KISWAHILI'
   key = Vigenere.generate_key(encrypted_text, keyword)
-  puts Vigenere.vigenere_decrypt(encrypted_text, key)
+  puts "Decrypted: #{Vigenere.vigenere_decrypt(encrypted_text, key)}"
 end
 
 test
