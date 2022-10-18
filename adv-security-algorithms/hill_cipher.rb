@@ -10,7 +10,11 @@ module Hill
     2.times do 
       j = 0
       2.times do
-        matrix[i][j] = UPPER_CASE.index(string[stringIdx]) % 26
+        if LOWER_CASE.include?(string[stringIdx])
+          matrix[i][j] = LOWER_CASE.index(string[stringIdx]) % 26
+        elsif UPPER_CASE.include?(string[stringIdx])
+          matrix[i][j] = UPPER_CASE.index(string[stringIdx]) % 26
+        end
         stringIdx += 1
         j += 1
       end
@@ -25,8 +29,12 @@ module Hill
     stringIdx = 0
     i = 0
 
-    (text.length / 2).times do 
-      text_vectors[i] = [UPPER_CASE.index(text[stringIdx]) % 26, UPPER_CASE.index(text[stringIdx + 1]) % 26]
+    (text.length / 2).times do
+      if LOWER_CASE.include?(text[stringIdx]) 
+        text_vectors[i] = [LOWER_CASE.index(text[stringIdx]) % 26, LOWER_CASE.index(text[stringIdx + 1]) % 26]
+      elsif UPPER_CASE.include?(text[stringIdx])
+        text_vectors[i] = [UPPER_CASE.index(text[stringIdx]) % 26, UPPER_CASE.index(text[stringIdx + 1]) % 26]
+      end
       stringIdx += 2
       i += 1
     end
@@ -51,12 +59,13 @@ module Hill
 end
 
 def test
-  text = "CAKEQ"
+  # Encrypt : text and keyword can be lower or upper case --> Encrypted text is returned in upper case
+  text = "CAKE"
   keyword = "BAKE"
   text_vectors = Hill.create_text_vectors(text)
   key_matrix = Hill.generate_key_matrix(keyword)
 
-  print "Encrypted: #{Hill.hill_encrypt(text_vectors, key_matrix)}"
+  puts "Encrypted: #{Hill.hill_encrypt(text_vectors, key_matrix)}"
 end
 
 test
