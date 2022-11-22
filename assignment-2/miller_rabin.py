@@ -1,6 +1,6 @@
 import random
 
-def miller_rabin(n, times):
+def miller_rabin(n, t):
   if n == 2:
     return "inconclusive"
 
@@ -15,8 +15,8 @@ def miller_rabin(n, times):
     q //= 2
     k += 1
 
-  # Try to falsify n's primality r times
-  for _ in range(times):
+  # Try to falsify n's primality t times
+  for _ in range(t):
     a = random.randrange(2, n - 1)
 
     if a ** q % n == 1:
