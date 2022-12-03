@@ -29,6 +29,7 @@ def miller_rabin(n, t):
 
   return "composite"
   
+# TEST
 def test():
   assert miller_rabin(2, 100) == "inconclusive"
   assert miller_rabin(4, 100) == "composite"

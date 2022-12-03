@@ -55,8 +55,6 @@ def generate_possible_plaintexts(ciphertext, matched_letters, num_plaintexts):
   
   return possible_plaintexts
   
-
-
 def match_letters_by_frequency(ciphertext_frequencies, num_plaintexts):
   matched_letters = {}
 
@@ -101,7 +99,7 @@ def match_letters_by_frequency(ciphertext_frequencies, num_plaintexts):
 
   return matched_letters
 
-    
+# TEST
 def test():
   ciphertext = "UZQSOVUOHXMOPVGPOZPEVSGZWSZOPFPESXUDBMETSXAIZVUEPHZHMDZSHZOWSFPAPPDTSVPQUZWYMXUZUHSXEPYEPOPDZSZUFPOMBZWPFUPZHMDJUDTMOHMQ"
   
@@ -116,6 +114,4 @@ def test():
   for plaintext in possible_plaintexts:
     print("\n", plaintext)
 
-
-  
 test()
