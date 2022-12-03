@@ -60,8 +60,7 @@ def match_letters_by_frequency(ciphertext_frequencies, num_plaintexts):
 
   for letter in ciphertext_frequencies:
     closest_letters = []
-    closest_letter = None
-    closest_letter_index = None
+    closest_letter, closest_letter_index = None, None
     closest_frequency = 0
     left = 0
     right = len(english_letter_frequencies) - 1
